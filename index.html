@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aproveitamento</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <form id="formulario">
+                <div class="form-group">
+                    <label for="largMat" class="labelField">Insira a largura do Material (mm)</label>
+                    <input type="text" id="largMat" class="form-control" placeholder="Largura do Material">
+                    <label for="altMat" class="labelField">Insira a altura do Material (mm)</label>
+                    <input type="text" id="altMat" class="form-control" placeholder="Altura do Material">
+                    <label for="largProd" class="labelField">Insira a largura do Material (mm)</label>
+                    <input type="text" id="largProd" class="form-control" placeholder="Largura do Produto">
+                    <label for="altProd" class="labelField">Insira a altura do Material (mm)</label>
+                    <div class="input-group mb-3" id="groupInvert" onclick="inverter();">
+                        <input type="text" id="altProd" class="form-control" placeholder="Altura do Produto">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button">inverter</button>
+                        </div>
+                    </div>
+                    <label for="qtdTotal" class="labelField">Quantidade por chapa (un.)</label>
+                    <input type="text" id="qtdTotal" class="form-control" placeholder="Melhor aproveitamento" disabled>
+                    <label for="tamanhoFinal" class="labelField">Tamanho final da chapa (mm)</label>
+                    <input type="text" id="tamanhoFinal" class="form-control" placeholder="Tamanho Final" disabled>
+                </div>
+                <hr>
+                <div class="form-group" style="text-align: center;"> 
+                    <button type="button" class="btn btn-primary" onclick="calculoTotal()">Calcular</button>
+                </div>
+            </form>
+        </div>  
+    </div>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/jquery.mask.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/main.js"></script>
+</body>    
+</html>
