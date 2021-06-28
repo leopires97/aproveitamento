@@ -9,12 +9,12 @@ var tamanhoFinalField = document.getElementById("tamanhoFinal");
 var canvasAprov = document.getElementById("canvasAprov");
 
 function desenharAprov(qtdHoriz, qtdVert, qtdGiraHoriz, qtdGiraVert)    {
-    var larguraObj = parseInt(largProdField.value) / 10;
-    var alturaObj = parseInt(altProdField.value) / 10;
+    var larguraObj = parseInt(largProdField.value) / 3;
+    var alturaObj = parseInt(altProdField.value) / 3;
     var ctx = canvasAprov.getContext("2d");
 
-    canvasAprov.width = parseInt(largMatField.value) / 10;
-    canvasAprov.height = parseInt(altMatField.value) / 10;
+    canvasAprov.width = parseInt(largMatField.value) / 3;
+    canvasAprov.height = parseInt(altMatField.value) / 3;
 
     for(var a = 0; a < qtdHoriz; a++)  { //loop para criação na largura
         if(a == 0)  {
