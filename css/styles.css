@@ -11,6 +11,19 @@ body{
     text-align: center;
   }
 
+  .jumbotronAproveitamento  {
+    padding: 2rem 1rem;
+    margin-bottom: -300px;
+    background-color: rgba(1, 4, 39, 0.26);
+    border-radius: .3rem;
+    box-shadow: 10px;
+    margin-top: 2%;
+    margin-left: 27%;
+    text-align: center;
+    width: 600px;
+    height: fit-content;
+  }
+
   .labelField   {
     font-size: 16pt;
     margin-top: 10px;
@@ -29,4 +42,9 @@ body{
       margin-left: 8%;
       text-align: center;
       margin-bottom: -10px;
+  }
+
+  #canvasAprov  {
+      border: 1px solid #000000;
+      background-color: rgba(255, 255, 255, .5);
   }
