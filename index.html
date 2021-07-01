@@ -11,22 +11,20 @@
         <div class="jumbotron" style="margin-top: 10px;">
             <div class="row" style="text-align: center;">
                 <label for="canvasAprov" class="labelField" style="margin-top: -15px; margin-bottom: 0px; font-size: 20px;">Aproveitamento</label>
+                <div class="p-3" style="margin-top: 25px; width: 50%; margin-left: 25%;">
+                    <canvas id="canvasAprov" width="250" height="130"></canvas>
+                </div>
             </div>
             <hr>
             <div class="row">
-                <div class="col">
-                    <div class="p-3 border" style="margin-top: 25px;">
-                        <canvas id="canvasAprov" width="250" height="130"></canvas>
-                    </div>
-                </div>
-                <div class="col" style="margin-right: 200px;">
+                <div class="col" style="margin-right:;">
                     <label for="largMat" class="labelField" tabindex="1">Insira a largura do Material (mm)</label>
                     <input type="text" id="largMat" class="form-control" placeholder="Largura do Material">
                     <label for="largProd" class="labelField" tabindex="3">Insira a largura do Produto (mm)</label>
                     <input type="text" id="largProd" class="form-control" placeholder="Largura do Produto">
                 </div>
-                <div class="col" style="margin-left: -280px; margin-right: -100px;">
-                    <button type="button" class="btn btn-success" onclick="inverterMaterial()" style="margin-top: 54px;">Inverter Material</button>
+                <div class="col" style="margin-left: -100px; margin-right: -100px;">
+                    <button type="button" class="btn btn-success" onclick="inverterMaterial()" style="margin-top: 54px;" disabled>Inverter Material</button>
                     <div class="row" >
                         <div class="col">
                             <button type="button" class="btn btn-success" onclick="inverterProduto()" style="margin-top: 54px;">Inverter Produto</button>

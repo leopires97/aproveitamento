@@ -28,6 +28,7 @@ function desenharAprov(qtdHoriz, qtdVert, qtdGiraHoriz, qtdGiraHorizLinha, qtdGi
     var alturaObj = parseInt(altProdField.value) / 5;
     canvasAprov.width = parseInt(largMatField.value) / 5;
     canvasAprov.height = parseInt(altMatField.value) / 5;
+    rectCreate(0, 0, canvasAprov.width, canvasAprov.height);
     qtdGiraHoriz = qtdGiraHoriz / qtdGiraHorizLinha;
     qtdGiraVert = qtdGiraVert / qtdGiraVertLinha;
 
@@ -140,6 +141,6 @@ function calculoTotal()   {
     qtdTotalField.value =  tempTotal;
     tamanhoFinalField.value = horizTotal + ' x ' + vertTotal;
     qtdObj = 0;
-    qtdChapaField.value = Math.round(parseInt(totalEntregaField.value) / tempTotal);
+    qtdChapaField.value = Math.ceil(parseInt(totalEntregaField.value) / tempTotal);
     desenharAprov(horizDivide, vertDivide, tempHoriz, Math.floor(horizSobra / parseInt(altProdField.value)) ,tempVert, Math.floor(vertSobra / parseInt(largProdField.value)));
 }
