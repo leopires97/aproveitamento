@@ -8,27 +8,28 @@ var qtdTotalField = document.getElementById("qtdTotal");
 var tamanhoFinalField = document.getElementById("tamanhoFinal");
 var canvasAprov = document.getElementById("canvasAprov");
 var qtdObjField = document.getElementById("qtdObj");
+var qtdChapaField = document.getElementById("qtdChapa");
+var totalEntregaField = document.getElementById("totalEntrega");
 var qtdObj = 0;
 
 function rectCreate(x, y, largura, altura)  {
     var ctx = canvasAprov.getContext("2d");
     ctx.beginPath();
     ctx.rect(x, y, largura, altura);
-    ctx.strokeStyle = "#000000"
+    ctx.strokeStyle = "#000000";
     ctx.stroke();
     ctx.fillStyle = "#FFFFFF";
-    //ctx.fillRect(x, y, largura, altura);
+    ctx.fillRect(x, y, largura, altura);
     qtdObj = qtdObj + 1;
 }
 
 function desenharAprov(qtdHoriz, qtdVert, qtdGiraHoriz, qtdGiraHorizLinha, qtdGiraVert, qtdGiraVertLinha)    {
-    var larguraObj = parseInt(largProdField.value) / 3;
-    var alturaObj = parseInt(altProdField.value) / 3;
-    canvasAprov.width = parseInt(largMatField.value) / 3;
-    canvasAprov.height = parseInt(altMatField.value) / 3;
+    var larguraObj = parseInt(largProdField.value) / 5;
+    var alturaObj = parseInt(altProdField.value) / 5;
+    canvasAprov.width = parseInt(largMatField.value) / 5;
+    canvasAprov.height = parseInt(altMatField.value) / 5;
     qtdGiraHoriz = qtdGiraHoriz / qtdGiraHorizLinha;
     qtdGiraVert = qtdGiraVert / qtdGiraVertLinha;
-    alert(qtdGiraHorizLinha + " qtdGiraHorizLinha/ " + qtdGiraVertLinha + " qtdGiraVertLinha/ " + qtdHoriz + " qtdHoriz/ " + qtdVert);
 
     for(var a = 0; a < qtdHoriz; a++)  { //loop para criação na largura
         if(a == 0)  {
@@ -71,10 +72,18 @@ function desenharAprov(qtdHoriz, qtdVert, qtdGiraHoriz, qtdGiraHorizLinha, qtdGi
             }
         }
     }
-
+    if(qtdGiraHoriz > 1)    { //loop pra girar na horizontal dependendo do aproveitamento
+        for(var g = 0; g < qtdGiraHoriz; g++)   {
+            if(g == 0)  {
+                rectCreate(larguraObj * qtdHoriz, 0, alturaObj, larguraObj);
+            }   else if(g > 0)  {
+                rectCreate(larguraObj * qtdHoriz, larguraObj * g, alturaObj, larguraObj);
+            }
+        }
+    }
 }
 
-function inverter() {
+function inverterProduto() {
     var tempAltProd = altProdField.value;
     var tempLargProd = largProdField.value;
 
@@ -82,6 +91,17 @@ function inverter() {
     altProdField.value = tempLargProd;
 
     calculoTotal();
+}
+
+function inverterMaterial() {
+    var tempAltMat = altMatField.value;
+    var tempLargMat = largMatField.value;
+
+    largMatField.value = tempAltMat;
+    altMatField.value = tempLargMat;
+
+    calculoTotal();
+
 }
     
 function calculoTotal()   {
@@ -120,5 +140,6 @@ function calculoTotal()   {
     qtdTotalField.value =  tempTotal;
     tamanhoFinalField.value = horizTotal + ' x ' + vertTotal;
     qtdObj = 0;
+    qtdChapaField.value = Math.round(parseInt(totalEntregaField.value) / tempTotal);
     desenharAprov(horizDivide, vertDivide, tempHoriz, Math.floor(horizSobra / parseInt(altProdField.value)) ,tempVert, Math.floor(vertSobra / parseInt(largProdField.value)));
 }
