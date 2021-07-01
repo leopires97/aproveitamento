@@ -32,10 +32,10 @@ function rectCreate(x, y, largura, altura)  {
 }
 
 function desenharAprov(qtdHoriz, qtdVert, qtdGiraHoriz, qtdGiraHorizLinha, qtdGiraVert, qtdGiraVertLinha)    {
-    var larguraObj = parseInt(largProdField.value);
-    var alturaObj = parseInt(altProdField.value);
-    canvasAprov.width = parseInt(largMatField.value);
-    canvasAprov.height = parseInt(altMatField.value);
+    var larguraObj = parseInt(largProdField.value) *2;
+    var alturaObj = parseInt(altProdField.value) *2;
+    canvasAprov.width = parseInt(largMatField.value) *2;
+    canvasAprov.height = parseInt(altMatField.value) *2;
     rectCreate(0, 0, canvasAprov.width, canvasAprov.height);
     qtdGiraHoriz = qtdGiraHoriz / qtdGiraHorizLinha;
     qtdGiraVert = qtdGiraVert / qtdGiraVertLinha;
