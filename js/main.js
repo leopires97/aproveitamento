@@ -12,6 +12,14 @@ var qtdChapaField = document.getElementById("qtdChapa");
 var totalEntregaField = document.getElementById("totalEntrega");
 var qtdObj = 0;
 
+function checkCampos()  {
+    if(largMatField.value != "" && altMatField.value != "" && altProdField.value != "" && largProdField.value != "")    {
+        calculoTotal();
+    }   else    {
+        alert("Preencha os campos corretamente");
+    }
+}
+
 function rectCreate(x, y, largura, altura)  {
     var ctx = canvasAprov.getContext("2d");
     ctx.beginPath();
@@ -24,10 +32,10 @@ function rectCreate(x, y, largura, altura)  {
 }
 
 function desenharAprov(qtdHoriz, qtdVert, qtdGiraHoriz, qtdGiraHorizLinha, qtdGiraVert, qtdGiraVertLinha)    {
-    var larguraObj = parseInt(largProdField.value) / 5;
-    var alturaObj = parseInt(altProdField.value) / 5;
-    canvasAprov.width = parseInt(largMatField.value) / 5;
-    canvasAprov.height = parseInt(altMatField.value) / 5;
+    var larguraObj = parseInt(largProdField.value);
+    var alturaObj = parseInt(altProdField.value);
+    canvasAprov.width = parseInt(largMatField.value);
+    canvasAprov.height = parseInt(altMatField.value);
     rectCreate(0, 0, canvasAprov.width, canvasAprov.height);
     qtdGiraHoriz = qtdGiraHoriz / qtdGiraHorizLinha;
     qtdGiraVert = qtdGiraVert / qtdGiraVertLinha;
@@ -91,7 +99,7 @@ function inverterProduto() {
     largProdField.value = tempAltProd;
     altProdField.value = tempLargProd;
 
-    calculoTotal();
+    checkCampos();
 }
 
 function inverterMaterial() {
@@ -101,7 +109,7 @@ function inverterMaterial() {
     largMatField.value = tempAltMat;
     altMatField.value = tempLargMat;
 
-    calculoTotal();
+    checkCampos();
 
 }
     
