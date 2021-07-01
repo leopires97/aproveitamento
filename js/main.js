@@ -7,72 +7,71 @@ var altProdField = document.getElementById("altProd");
 var qtdTotalField = document.getElementById("qtdTotal");
 var tamanhoFinalField = document.getElementById("tamanhoFinal");
 var canvasAprov = document.getElementById("canvasAprov");
+var qtdObjField = document.getElementById("qtdObj");
+var qtdObj = 0;
 
-function desenharAprov(qtdHoriz, qtdVert, qtdGiraHoriz, qtdGiraVert)    {
+function rectCreate(x, y, largura, altura)  {
+    var ctx = canvasAprov.getContext("2d");
+    ctx.beginPath();
+    ctx.rect(x, y, largura, altura);
+    ctx.strokeStyle = "#000000"
+    ctx.stroke();
+    ctx.fillStyle = "#FFFFFF";
+    //ctx.fillRect(x, y, largura, altura);
+    qtdObj = qtdObj + 1;
+}
+
+function desenharAprov(qtdHoriz, qtdVert, qtdGiraHoriz, qtdGiraHorizLinha, qtdGiraVert, qtdGiraVertLinha)    {
     var larguraObj = parseInt(largProdField.value) / 3;
     var alturaObj = parseInt(altProdField.value) / 3;
-    var ctx = canvasAprov.getContext("2d");
-
     canvasAprov.width = parseInt(largMatField.value) / 3;
     canvasAprov.height = parseInt(altMatField.value) / 3;
+    qtdGiraHoriz = qtdGiraHoriz / qtdGiraHorizLinha;
+    qtdGiraVert = qtdGiraVert / qtdGiraVertLinha;
+    alert(qtdGiraHorizLinha + " qtdGiraHorizLinha/ " + qtdGiraVertLinha + " qtdGiraVertLinha/ " + qtdHoriz + " qtdHoriz/ " + qtdVert);
 
     for(var a = 0; a < qtdHoriz; a++)  { //loop para criação na largura
         if(a == 0)  {
-            ctx.beginPath();
-            ctx.rect(0, 0, larguraObj, alturaObj);
-            ctx.stroke();
+            rectCreate(0, 0, larguraObj, alturaObj);
         }   else if(a > 0)   {
-                ctx.beginPath();
-                ctx.rect(larguraObj * a, 0, larguraObj, alturaObj);
-                ctx.stroke();
+            rectCreate(larguraObj * a, 0, larguraObj, alturaObj);
         }
         if(qtdVert > 1)    {
             for(var b = 0; b < qtdVert; b++)    { //b = vertical; c = horizontal
                 for(var c = 0; c < qtdHoriz; c++)   {
                     if(b == 0 && c == 0)  {
-                        ctx.beginPath();
-                        ctx.rect(0, alturaObj, larguraObj, alturaObj);
-                        ctx.stroke();
-                    }   else if(c > 0)   {
-                            ctx.beginPath();
-                            ctx.rect(larguraObj * c, alturaObj, larguraObj, alturaObj);
-                            ctx.stroke();
+                        rectCreate(0, alturaObj, larguraObj, alturaObj);
+                    }   else if(c > 0)   {            
+                        rectCreate(larguraObj * c, alturaObj, larguraObj, alturaObj);
                     }   
-                    if(b > 0)  {
-                        ctx.beginPath();
-                        ctx.rect(larguraObj * c, alturaObj * b, larguraObj, alturaObj);
-                        ctx.stroke();
+                    if(b > 0)  {        
+                        rectCreate(larguraObj * c, alturaObj * b, larguraObj, alturaObj);
                     }
                 }
             }
         }
     }
-    if(qtdGiraVert > 1)    { //loop pra girar na horizontal dependendo do aproveitamento
-        for(var d = 0; d < qtdGiraVert; d++)   {
-            if(d == 0)  {
-                ctx.beginPath();
-                ctx.rect(0, alturaObj * qtdVert, alturaObj, larguraObj);
-                ctx.stroke();
-            }   else if(d > 0)  {
-                ctx.beginPath();
-                ctx.rect(alturaObj * d, alturaObj * qtdVert, alturaObj, larguraObj);
-                ctx.stroke();
+    if(qtdGiraVert > 1)    { //loop pra girar na vertical dependendo do aproveitamento
+        for(var d = 0; d < qtdGiraVertLinha; d++)  {
+            for(var e = 0; e < qtdGiraVert; e++)   {
+                if(e == 0)  {
+                    rectCreate(0, alturaObj * qtdVert, alturaObj, larguraObj);
+                }   else if(e > 0)  {
+                    rectCreate(alturaObj * e, alturaObj * qtdVert, alturaObj, larguraObj);
+                }
+                if(d > 0)   {
+                    for(var f = 0; f < qtdGiraVert; f++)   {
+                        if(f == 0)  {
+                            rectCreate(0, (alturaObj * qtdVert) + (larguraObj * d), alturaObj, larguraObj);
+                        }   else if(f > 0)  {
+                            rectCreate(alturaObj * f, (alturaObj * qtdVert) + (larguraObj * d), alturaObj, larguraObj);
+                        }
+                    }
+                }
             }
         }
     }
-    if(qtdGiraHoriz > 1)    { //loop pra girar na horizontal dependendo do aproveitamento
-        for(var e = 0; e < qtdGiraHoriz; e++)   {
-            if(e == 0)  {
-                ctx.beginPath();
-                ctx.rect(larguraObj * qtdHoriz, 0, alturaObj, larguraObj);
-                ctx.stroke();
-            }   else if(e > 0)  {
-                ctx.beginPath();
-                ctx.rect(larguraObj * qtdHoriz, larguraObj * e, alturaObj, larguraObj);
-                ctx.stroke();
-            }
-        }
-    }
+
 }
 
 function inverter() {
@@ -88,6 +87,7 @@ function inverter() {
 function calculoTotal()   {
     var horizDivide, vertDivide, horizTotal, vertTotal, 
         horizSobra, vertSobra, tempHoriz, tempVert, tempTotal;
+
     
     if(largMatField.value == '' && altMatField.value == '')  {
         horizDivide = 0;
@@ -101,13 +101,13 @@ function calculoTotal()   {
         tempTotal = 0;
 
     }   else if(largMatField.value != '' && altMatField.value != '')   {
-        horizDivide = Math.floor(parseInt(largMatField.value) / parseInt(largProdField.value));
-        vertDivide = Math.floor(parseInt(altMatField.value) / parseInt(altProdField.value));
-        tempTotal = horizDivide * vertDivide;
-        horizTotal = horizDivide * parseInt(largProdField.value);
-        vertTotal = vertDivide * parseInt(altProdField.value);
-        horizSobra = parseInt(largMatField.value) - parseInt(horizTotal);
-        vertSobra = parseInt(altMatField.value) - parseInt(vertTotal);
+        horizDivide = Math.floor(parseInt(largMatField.value) / parseInt(largProdField.value)); //quantas colunas cabem
+        vertDivide = Math.floor(parseInt(altMatField.value) / parseInt(altProdField.value)); //quantos linhas
+        tempTotal = horizDivide * vertDivide; //total peças sem aproveitamento final
+        horizTotal = horizDivide * parseInt(largProdField.value); //uso da largura do material no aprov. cru
+        vertTotal = vertDivide * parseInt(altProdField.value); //uso da altura do material no aprov. cru
+        horizSobra = parseInt(largMatField.value) - parseInt(horizTotal); //sobra do material subtraindo quantidade de colunas
+        vertSobra = parseInt(altMatField.value) - parseInt(vertTotal);// sobra do material subtraindo qunatidade de linhas
         if(horizSobra > parseInt(altProdField.value)) { //cabe mais de pé na horizontal
             tempHoriz = Math.floor(horizSobra / parseInt(altProdField.value)) * Math.floor(parseInt(altMatField.value) / parseInt(largProdField.value));
             tempTotal += tempHoriz;
@@ -119,6 +119,6 @@ function calculoTotal()   {
     }
     qtdTotalField.value =  tempTotal;
     tamanhoFinalField.value = horizTotal + ' x ' + vertTotal;
-    desenharAprov(horizDivide, vertDivide, tempHoriz, tempVert);
+    qtdObj = 0;
+    desenharAprov(horizDivide, vertDivide, tempHoriz, Math.floor(horizSobra / parseInt(altProdField.value)) ,tempVert, Math.floor(vertSobra / parseInt(largProdField.value)));
 }
-
