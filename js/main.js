@@ -10,10 +10,13 @@ var canvasAprov = document.getElementById("canvasAprov");
 var qtdObjField = document.getElementById("qtdObj");
 var qtdChapaField = document.getElementById("qtdChapa");
 var totalEntregaField = document.getElementById("totalEntrega");
-var qtdObj = 0;
+var altMargField = document.getElementById("altMarg");
+var largMargField = document.getElementById("largMarg");
 
 function checkCampos()  {
     if(largMatField.value != "" && altMatField.value != "" && altProdField.value != "" && largProdField.value != "")    {
+        largMatField.value = largMatField.value - largMargField.value;
+        altMatField.value = altMatField.value - altMargField.value;
         calculoTotal();
     }   else    {
         alert("Preencha os campos corretamente");
@@ -32,10 +35,17 @@ function rectCreate(x, y, largura, altura)  {
 }
 
 function desenharAprov(qtdHoriz, qtdVert, qtdGiraHoriz, qtdGiraHorizLinha, qtdGiraVert, qtdGiraVertLinha)    {
-    var larguraObj = parseInt(largProdField.value) *2;
-    var alturaObj = parseInt(altProdField.value) *2;
-    canvasAprov.width = parseInt(largMatField.value) *2;
-    canvasAprov.height = parseInt(altMatField.value) *2;
+    if(parseInt(largProdField.value) > 80 && parseInt(altProdField.value) > 80) {
+        var larguraObj = parseInt(largProdField.value) / 4;
+        var alturaObj = parseInt(altProdField.value) / 4;
+        canvasAprov.width = parseInt(largMatField.value) / 4;
+        canvasAprov.height = parseInt(altMatField.value) / 4;
+    }   else    {
+        var larguraObj = parseInt(largProdField.value) * 2;
+        var alturaObj = parseInt(altProdField.value) * 2;
+        canvasAprov.width = parseInt(largMatField.value) * 2;
+        canvasAprov.height = parseInt(altMatField.value) * 2;
+    }
     rectCreate(0, 0, canvasAprov.width, canvasAprov.height);
     qtdGiraHoriz = qtdGiraHoriz / qtdGiraHorizLinha;
     qtdGiraVert = qtdGiraVert / qtdGiraVertLinha;
@@ -130,13 +140,13 @@ function calculoTotal()   {
         tempTotal = 0;
 
     }   else if(largMatField.value != '' && altMatField.value != '')   {
-        horizDivide = Math.floor(parseInt(largMatField.value) / parseInt(largProdField.value)); //quantas colunas cabem
-        vertDivide = Math.floor(parseInt(altMatField.value) / parseInt(altProdField.value)); //quantos linhas
-        tempTotal = horizDivide * vertDivide; //total peças sem aproveitamento final
-        horizTotal = horizDivide * parseInt(largProdField.value); //uso da largura do material no aprov. cru
-        vertTotal = vertDivide * parseInt(altProdField.value); //uso da altura do material no aprov. cru
-        horizSobra = parseInt(largMatField.value) - parseInt(horizTotal); //sobra do material subtraindo quantidade de colunas
-        vertSobra = parseInt(altMatField.value) - parseInt(vertTotal);// sobra do material subtraindo qunatidade de linhas
+            horizDivide = Math.floor(parseInt(largMatField.value) / parseInt(largProdField.value)); //quantas colunas cabem
+            vertDivide = Math.floor(parseInt(altMatField.value) / parseInt(altProdField.value)); //quantos linhas
+            tempTotal = horizDivide * vertDivide; //total peças sem aproveitamento final
+            horizTotal = horizDivide * parseInt(largProdField.value); //uso da largura do material no aprov. cru
+            vertTotal = vertDivide * parseInt(altProdField.value); //uso da altura do material no aprov. cru
+            horizSobra = parseInt(largMatField.value) - parseInt(horizTotal); //sobra do material subtraindo quantidade de colunas
+            vertSobra = parseInt(altMatField.value) - parseInt(vertTotal);// sobra do material subtraindo qunatidade de linhas
         if(horizSobra > parseInt(altProdField.value)) { //cabe mais de pé na horizontal
             tempHoriz = Math.floor(horizSobra / parseInt(altProdField.value)) * Math.floor(parseInt(altMatField.value) / parseInt(largProdField.value));
             tempTotal += tempHoriz;
@@ -148,7 +158,6 @@ function calculoTotal()   {
     }
     qtdTotalField.value =  tempTotal;
     tamanhoFinalField.value = horizTotal + ' x ' + vertTotal;
-    qtdObj = 0;
     qtdChapaField.value = Math.ceil(parseInt(totalEntregaField.value) / tempTotal);
     desenharAprov(horizDivide, vertDivide, tempHoriz, Math.floor(horizSobra / parseInt(altProdField.value)) ,tempVert, Math.floor(vertSobra / parseInt(largProdField.value)));
 }

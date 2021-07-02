@@ -17,31 +17,29 @@
             </div>
             <hr>
             <div class="row">
-                <div class="col" style="margin-right:;">
-                    <label for="largMat" class="labelField" tabindex="1">Insira a largura do Material (mm)</label>
+                <div class="col">
+                    <label for="largMat" class="labelField" tabindex="1">Largura do Material (mm)</label>
                     <input type="text" id="largMat" class="form-control" placeholder="Largura do Material">
-                    <label for="largProd" class="labelField" tabindex="3">Insira a largura do Produto (mm)</label>
-                    <input type="text" id="largProd" class="form-control" placeholder="Largura do Produto">
+                    <label for="altMat" class="labelField" tabindex="2">Altura do Material (mm)</label>
+                    <input type="text" id="altMat" class="form-control" placeholder="Altura do Material">
+                    <label for="largMarg" class="labelField" tabindex="4">Margem Largura (mm)</label>
+                    <input type="text" id="largMarg" class="form-control" value="30">
+                    <label for="altMarg" class="labelField" tabindex="4">Margem Altura (mm)</label>
+                    <input type="text" id="altMarg" class="form-control" value="30">
                 </div>
                 <div class="col" style="margin-left: -100px; margin-right: -100px;">
-                    <button type="button" class="btn btn-success" onclick="inverterMaterial()" style="margin-top: 54px;" disabled>Inverter Material</button>
-                    <div class="row" >
-                        <div class="col">
-                            <button type="button" class="btn btn-success" onclick="inverterProduto()" style="margin-top: 54px;">Inverter Produto</button>
-                        </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-success" onclick="inverterProduto()" style="margin-top: 54px; font-size: 30px;">Inverter Produto</button>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <label for="totalEntrega" class="labelField" tabindex="5">Qtd. total Produção</label>
-                            <input type="text" id="totalEntrega" class="form-control" placeholder="Qtd. total produção">
-                        </div>
-                    </div>
+                    <button type="button" class="btn btn-success" onclick="inverterMaterial()" style="margin-top: 54px; font-size: 20px;" disabled>Inverter Material</button>
                 </div>
                 <div class="col">
-                    <label for="altMat" class="labelField" tabindex="2">Insira a altura do Material (mm)</label>
-                    <input type="text" id="altMat" class="form-control" placeholder="Altura do Material">
-                    <label for="altProd" class="labelField" tabindex="4">Insira a altura do Produto (mm)</label>
+                    <label for="largProd" class="labelField" tabindex="3">Largura do Produto (mm)</label>
+                    <input type="text" id="largProd" class="form-control" placeholder="Largura do Produto">
+                    <label for="altProd" class="labelField" tabindex="4">Altura do Produto (mm)</label>
                     <input type="text" id="altProd" class="form-control" placeholder="Altura do Produto">
+                    <label for="totalEntrega" class="labelField" tabindex="5">Qtd. total Produção</label>
+                    <input type="text" id="totalEntrega" class="form-control" placeholder="Qtd. total produção">
                 </div>
             </div>
             <hr>
