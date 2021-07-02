@@ -12,11 +12,10 @@ var qtdChapaField = document.getElementById("qtdChapa");
 var totalEntregaField = document.getElementById("totalEntrega");
 var altMargField = document.getElementById("altMarg");
 var largMargField = document.getElementById("largMarg");
+var totalSangriaField = document.getElementById("totalSangria");
 
 function checkCampos()  {
     if(largMatField.value != "" && altMatField.value != "" && altProdField.value != "" && largProdField.value != "")    {
-        largMatField.value = largMatField.value - largMargField.value;
-        altMatField.value = altMatField.value - altMargField.value;
         calculoTotal();
     }   else    {
         alert("Preencha os campos corretamente");
@@ -31,7 +30,6 @@ function rectCreate(x, y, largura, altura)  {
     ctx.stroke();
     ctx.fillStyle = "#FFFFFF";
     ctx.fillRect(x, y, largura, altura);
-    qtdObj = qtdObj + 1;
 }
 
 function desenharAprov(qtdHoriz, qtdVert, qtdGiraHoriz, qtdGiraHorizLinha, qtdGiraVert, qtdGiraVertLinha)    {
@@ -127,6 +125,8 @@ function calculoTotal()   {
     var horizDivide, vertDivide, horizTotal, vertTotal, 
         horizSobra, vertSobra, tempHoriz, tempVert, tempTotal;
 
+    largProdField.value = parseInt(largProdField.value) + parseInt(totalSangriaField.value);
+    altProdField.value = parseInt(altProdField.value) + parseInt(totalSangriaField.value);
     
     if(largMatField.value == '' && altMatField.value == '')  {
         horizDivide = 0;
@@ -140,8 +140,8 @@ function calculoTotal()   {
         tempTotal = 0;
 
     }   else if(largMatField.value != '' && altMatField.value != '')   {
-            horizDivide = Math.floor(parseInt(largMatField.value) / parseInt(largProdField.value)); //quantas colunas cabem
-            vertDivide = Math.floor(parseInt(altMatField.value) / parseInt(altProdField.value)); //quantos linhas
+            horizDivide = Math.floor((parseInt(largMatField.value) - parseInt(largMargField.value)) / parseInt(largProdField.value)); //quantas colunas cabem
+            vertDivide = Math.floor((parseInt(altMatField.value) - parseInt(altMargField.value))/ parseInt(altProdField.value)); //quantos linhas
             tempTotal = horizDivide * vertDivide; //total peças sem aproveitamento final
             horizTotal = horizDivide * parseInt(largProdField.value); //uso da largura do material no aprov. cru
             vertTotal = vertDivide * parseInt(altProdField.value); //uso da altura do material no aprov. cru
