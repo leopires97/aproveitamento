@@ -10,25 +10,26 @@
     <div class="container" style="width: 1400px;">
         <div class="card text-white bg-secondary mb-3 text-center" style="margin-top: 10px;">
             <div class="card-header" style="font-size: 20px">Aproveitamento</div>
+            <hr style="opacity: 0%; margin-top: -0px;">
+            <div class="row" style="text-align: center">
+                <div class="col text-center">
+                    <button type="button" class="btn btn-primary" onclick="btnLargAlt(2500, 1300)" style="margin-top: -10px; margin-bottom: -10px; width: 70%;">2500x1300mm</button>
+                </div>
+                <div class="col text-center">
+                    <button type="button" class="btn btn-primary" onclick="btnLargAlt(2000, 1000)" style="margin-top: -10px; margin-bottom: -10px; width: 70%;">2000x1000mm</button>
+                </div>
+                <div class="col text-center">
+                    <button type="button" class="btn btn-primary" onclick="btnLargAlt(2440, 1220)" style="margin-top: -10px; margin-bottom: -10px; width: 70%;">2440x1220mm</button>
+                </div>
+            </div>
+            <hr>
             <div class="row" style="text-align: center;">
-                <div class="p-3" style="margin-top: 15px; width: 50%; margin-left: 25%;">
+                <div class="p-3" style="margin-top: -30px; margin-bottom: -15px; width: 50%; margin-left: auto; margin-right: auto;">
                     <canvas id="canvasAprov" width="250" height="130"></canvas>
                 </div>
             </div>
             <hr>
-            <div class="row" style="text-align: center">
-                <div class="col text-center">
-                    <button type="button" class="btn btn-light" onclick="btnLargAlt('2500', '1300')">2500x1300mm</button>
-                </div>
-                <div class="col text-center">
-                    <button type="button" class="btn btn-light" onclick="btnLargAlt('2000', '1000')">2000x1000mm</button>
-                </div>
-                <div class="col text-center">
-                    <button type="button" class="btn btn-light" onclick="btnLargAlt('2440', '1220')">2440x1220mm</button>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
+            <div class="row" style="margin-top: -30px;">
                 <div class="col">
                     <label for="largMat" class="labelField" tabindex="1">Largura do Material (mm)</label>
                     <input type="text" id="largMat" class="form-control" placeholder="Largura do Material">
@@ -60,12 +61,14 @@
             <hr>
             <div class="row">
                 <div class="col">
-                    <label for="qtdTotal" class="labelField">Quantidade por chapa (un.)</label>
-                    <input type="text" id="qtdTotal" class="form-control" placeholder="Melhor aproveitamento" disabled>
-                    <label for="tamanhoFinal" class="labelField">Tamanho final da chapa (mm)</label>
-                    <input type="text" id="tamanhoFinal" class="form-control" placeholder="Tamanho Final" disabled>
-                    <label for="qtdChapa" class="labelField">Quantidade de Chapas</label>
-                    <input type="text" id="qtdChapa" class="form-control" placeholder="Quantidade de Chapas" disabled>
+                    <div class="form-group" style="margin-top: -30px;">
+                        <label for="qtdTotal" class="labelField">Quantidade por chapa (un.)</label>
+                        <input type="text" id="qtdTotal" class="form-control" placeholder="Melhor aproveitamento" disabled>
+                        <label for="tamanhoFinal" class="labelField">Tamanho final da chapa (mm)</label>
+                        <input type="text" id="tamanhoFinal" class="form-control" placeholder="Tamanho Final" disabled>
+                        <label for="qtdChapa" class="labelField">Quantidade de Chapas</label>
+                        <input type="text" id="qtdChapa" class="form-control" placeholder="Quantidade de Chapas" disabled>
+                    </div>
                 </div>
             </div>
             <hr>

@@ -15,8 +15,8 @@ var largMargField = document.getElementById("largMarg");
 var totalSangriaField = document.getElementById("totalSangria");
 
 function btnLargAlt(larg, alt)  {
-    largMatField.value = larg.value;
-    altMatField.value = alt.value;
+    largMatField.value = parseInt(larg);
+    altMatField.value = parseInt(alt);
 }
 
 function checkCampos()  {
