@@ -124,6 +124,7 @@ function inverterMaterial() {
 function colocarSangria()   {
     largProdField.value = parseInt(largProdField.value) + parseInt(totalSangriaField.value);
     altProdField.value = parseInt(altProdField.value) + parseInt(totalSangriaField.value);
+}
 
 function calculoTotal()   {
     var horizDivide, vertDivide, horizTotal, vertTotal, 
