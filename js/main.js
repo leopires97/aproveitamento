@@ -14,6 +14,11 @@ var altMargField = document.getElementById("altMarg");
 var largMargField = document.getElementById("largMarg");
 var totalSangriaField = document.getElementById("totalSangria");
 
+function btnLargAlt(larg, alt)  {
+    largMatField.value = larg.value;
+    altMatField.value = alt.value;
+}
+
 function checkCampos()  {
     if(largMatField.value != "" && altMatField.value != "" && altProdField.value != "" && largProdField.value != "")    {
         calculoTotal();
