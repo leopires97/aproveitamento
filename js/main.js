@@ -120,13 +120,17 @@ function inverterMaterial() {
     checkCampos();
 
 }
-    
+
+function colocarSangria()   {
+    largProdField.value = parseInt(largProdField.value) + parseInt(totalSangriaField.value);
+    altProdField.value = parseInt(altProdField.value) + parseInt(totalSangriaField.value);
+
 function calculoTotal()   {
     var horizDivide, vertDivide, horizTotal, vertTotal, 
         horizSobra, vertSobra, tempHoriz, tempVert, tempTotal;
 
-    largProdField.value = parseInt(largProdField.value) + parseInt(totalSangriaField.value);
-    altProdField.value = parseInt(altProdField.value) + parseInt(totalSangriaField.value);
+    largProdField.value = parseInt(largProdField.value);
+    altProdField.value = parseInt(altProdField.value);
     
     if(largMatField.value == '' && altMatField.value == '')  {
         horizDivide = 0;
